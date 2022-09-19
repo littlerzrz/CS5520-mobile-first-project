@@ -1,10 +1,12 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
 
-export default function Header({appName}) {
+export default function Header({ appName }) {
   return (
     <View>
-      <Text>{appName}</Text>
+      <Text style={{ fontWeight: "bold", fontSize: 40, marginBottom: 40 }}>
+        {appName}
+      </Text>
     </View>
-  )
+  );
 }
