@@ -1,15 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from "react";
-import { StyleSheet, Text, View } from 'react-native';
-import {Header, Input} from "./components";
+import { StyleSheet, Text, View, Button } from 'react-native';
+import {Header, Modal} from "./components";
 
 export default function App() {
   const [text, setText] = useState("");
+  const [visible, setVisible] = useState(false);
   const name = "HEHEHE";
   return (
     <View style={styles.container}>
       <Header appName={name} />
-      <Input setText={setText} styles={styles}/>
+      <Modal visible={visible} setVisible={setVisible}/>
+      <Button title="Enter Input" onPress={()=>setVisible(true)}></Button>
+      {/* <Input setText={setText} styles={styles}/> */}
       <Text style={{color:"red", fontSize:30}}> Submitted input: {text} </Text>
       <Text style={{marginTop:10}}>Open up App.js to start working on {name}!</Text>
       <StatusBar style="auto" />
