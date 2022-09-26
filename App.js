@@ -10,11 +10,20 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header appName={name} />
-      <Modal visible={visible} setVisible={setVisible}/>
-      <Button title="Enter Input" onPress={()=>setVisible(true)}></Button>
+      <Modal
+        setText={setText}
+        styles={styles}
+        visible={visible}
+        setVisible={setVisible}
+      />
+      <Button title="Tap to add a new goal" onPress={() => setVisible(true)}></Button>
       {/* <Input setText={setText} styles={styles}/> */}
-      <Text style={{color:"red", fontSize:30}}> Submitted input: {text} </Text>
-      <Text style={{marginTop:10}}>Open up App.js to start working on {name}!</Text>
+      <Text style={{ color: "green", fontSize: 30 }}>
+        Your current goal: {text}
+      </Text>
+      <Text style={{ marginTop: 10 }}>
+        Open up App.js to start working on {name}!
+      </Text>
       <StatusBar style="auto" />
     </View>
   );
