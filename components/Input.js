@@ -1,24 +1,24 @@
 import { View, TextInput, Button, Image } from "react-native";
 import React, { useState } from "react";
 
-export default function Input({ setText, styles, setVisible }) {
+export default function Input({ addNewGoal, styles, setVisible }) {
   const [input, setInput] = useState("");
   const onConfirm = () => {
-    setText(input);
-    if(input != "") {
+    addNewGoal({ text: input, key: Math.random() });
+    if (input != "") {
       setVisible(false);
       setInput("");
     }
   };
-  const onCancel = () =>{
+  const onCancel = () => {
     setVisible(false);
     setInput("");
-    setText("");
-  }
+    addNewGoal("");
+  };
   return (
     <View style={{ alignItems: "center" }}>
       <Image
-        style={{ width: 80, height: 80, margin:10 }}
+        style={{ width: 80, height: 80, margin: 10 }}
         source={{
           uri: "https://cdn-icons-png.flaticon.com/512/3233/3233474.png",
         }}
@@ -31,7 +31,12 @@ export default function Input({ setText, styles, setVisible }) {
       ></TextInput>
       <View style={{ flexDirection: "row-reverse" }}>
         <View style={{ width: "30%", margin: 5 }}>
-          <Button disabled={input == ""} color={"#f194ff"} title="Confirm" onPress={onConfirm} />
+          <Button
+            disabled={input == ""}
+            color={"#f194ff"}
+            title="Confirm"
+            onPress={onConfirm}
+          />
         </View>
         <View style={{ width: "30%", margin: 5 }}>
           <Button color={"#f194ff"} title="Cancel" onPress={onCancel} />

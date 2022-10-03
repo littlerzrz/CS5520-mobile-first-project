@@ -2,7 +2,7 @@ import { View, Modal, StyleSheet } from "react-native";
 import React from "react";
 import Input from "./Input";
 
-export default function MyModal({ visible, setVisible, setText, styles }) {
+export default function MyModal({ visible, setVisible, addNewGoal, styles }) {
   return (
     <View>
       <Modal visible={visible} onRequestClose={() => setVisible(false)}>
@@ -10,7 +10,11 @@ export default function MyModal({ visible, setVisible, setText, styles }) {
           style={{ alignContent: "center", justifyContent: "center", flex: 1 }}
         >
           <View style={style}>
-            <Input setText={setText} styles={styles} setVisible={setVisible} />
+            <Input
+              addNewGoal={addNewGoal}
+              styles={styles}
+              setVisible={setVisible}
+            />
           </View>
         </View>
       </Modal>

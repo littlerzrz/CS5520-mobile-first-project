@@ -1,18 +1,26 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
-import { Header, Modal } from "./components";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  SafeAreaView,
+  FlatList,
+} from "react-native";
+import { Header, Modal, GoalItem } from "./components";
 
 export default function App() {
-  const [text, setText] = useState("");
+  const [goals, setGoals] = useState([]);
   const [visible, setVisible] = useState(false);
   const name = "Welcome to my App";
+
   return (
     <SafeAreaView style={styles.main}>
       <View style={styles.container}>
         <Header appName={name} />
         <Modal
-          setText={setText}
+          addNewGoal={(input) => setGoals([input, ...goals])}
           styles={styles}
           visible={visible}
           setVisible={setVisible}
@@ -23,21 +31,22 @@ export default function App() {
         ></Button>
       </View>
       <View style={styles.bottom}>
-        <View
-          style={{ backgroundColor: "#80d3e2", borderRadius: 5}}
-        >
-          <Text
-            style={{
-              color: "green",
-              fontSize: 30,
-              textAlign: "center",
-              marginTop: 10,
-            }}
-          >
-            Your current goal: {"\n"}
-            {text}
-          </Text>
+        <View style={styles.goals}>
+          <Text style={styles.goalTitle}>Your current goals:</Text>
         </View>
+        <FlatList
+          style={{ marginTop: 10 }}
+          renderItem={({ item }) => (
+            <GoalItem
+              item={item}
+              removeGoal={(key) =>
+                setGoals(goals.filter((item) => item.key != key))
+              }
+            />
+          )}
+          data={goals}
+          keyExtractor={(item) => item.key}
+        />
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>
@@ -49,7 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     flex: 1,
-    height:'100%'
+    height: "100%",
   },
   container: {
     flex: 1,
@@ -70,6 +79,26 @@ const styles = StyleSheet.create({
   bottom: {
     flex: 4,
     backgroundColor: "#ddefef",
-    width:'100%'
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  goals: {
+    backgroundColor: "white",
+    width: "100%",
+    shadowColor: "black",
+    shadowRadius: 3,
+    shadowOffset: { width: 0.4, height: 7 },
+    shadowOpacity: 0.05,
+    zIndex: 2000,
+    justifyContent: "center",
+    borderTopColor: "lightgray",
+    borderTopWidth: 0.3,
+    height: 80,
+  },
+  goalTitle: {
+    color: "purple",
+    fontSize: 30,
+    textAlign: "center",
   },
 });
