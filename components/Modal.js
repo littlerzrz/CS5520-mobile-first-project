@@ -1,14 +1,15 @@
 import { View, Modal, StyleSheet } from "react-native";
-import React from 'react';
+import React from "react";
 import Input from "./Input";
 
 export default function MyModal({ visible, setVisible, setText, styles }) {
   return (
     <View>
       <Modal visible={visible} onRequestClose={() => setVisible(false)}>
-        <View style={styles.container}>
+        <View
+          style={{ alignContent: "center", justifyContent: "center", flex: 1 }}
+        >
           <View style={style}>
-
             <Input setText={setText} styles={styles} setVisible={setVisible} />
           </View>
         </View>
@@ -19,7 +20,7 @@ export default function MyModal({ visible, setVisible, setText, styles }) {
 
 const style = StyleSheet.create({
   margin: 20,
-  backgroundColor: "white",
+  backgroundColor: "#f2eee6",
   borderRadius: 20,
   padding: 35,
   alignItems: "center",

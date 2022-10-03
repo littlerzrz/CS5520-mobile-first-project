@@ -4,7 +4,14 @@ import React from "react";
 export default function Header({ appName }) {
   return (
     <View>
-      <Text style={{ fontWeight: "bold", fontSize: 40, marginBottom: 40 }}>
+      <Text
+        style={{
+          fontWeight: "bold",
+          fontSize: 30,
+          marginBottom: 10,
+          color: "purple",
+        }}
+      >
         {appName}
       </Text>
     </View>

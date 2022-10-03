@@ -16,9 +16,9 @@ export default function Input({ setText, styles, setVisible }) {
     setText("");
   }
   return (
-    <View style={{alignItems:"center"}}>
+    <View style={{ alignItems: "center" }}>
       <Image
-        style={{ width: 80, height: 80 }}
+        style={{ width: 80, height: 80, margin:10 }}
         source={{
           uri: "https://cdn-icons-png.flaticon.com/512/3233/3233474.png",
         }}
@@ -29,9 +29,13 @@ export default function Input({ setText, styles, setVisible }) {
         value={input}
         placeholder="Type in your goal here"
       ></TextInput>
-      <View style={{ flexDirection: "row" }}>
-        <Button title="Confirm" onPress={onConfirm} />
-        <Button title="Cancel" onPress={onCancel} />
+      <View style={{ flexDirection: "row-reverse" }}>
+        <View style={{ width: "30%", margin: 5 }}>
+          <Button disabled={input == ""} color={"#f194ff"} title="Confirm" onPress={onConfirm} />
+        </View>
+        <View style={{ width: "30%", margin: 5 }}>
+          <Button color={"#f194ff"} title="Cancel" onPress={onCancel} />
+        </View>
       </View>
     </View>
   );
